@@ -57,7 +57,7 @@ MainWindow::MainWindow(QWidget *parent)
     QCoreApplication::setApplicationVersion(g_software_version);
     QCoreApplication::setOrganizationName(g_software_author);
     read_setting();
-    left_mine_label->setNum(total_mines);
+
     ///////////////////////////
 
 
@@ -66,6 +66,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(block_area, SIGNAL(set_current_mines(int)), left_mine_label, SLOT(setNum(int)));
     setCentralWidget(block_area);
 
+
+    connect(show_all_mines, SIGNAL(triggered()), block_area, SLOT(slot_show_all_mines()));
 
 
     setWindowTitle(tr("Mine Sweeper"));
@@ -98,6 +100,7 @@ void MainWindow::slot_new_game()
     slot_timer();
     time_label->setNum(0);
     time->start();
+    left_mine_label->setNum(total_mines);
     block_area->set_block_area(row, column, total_mines, false);
 }
 
@@ -303,6 +306,7 @@ void MainWindow::create_menus()
     help_menu=menuBar()->addMenu(tr("&Help"));
     help_menu->addAction(about_mine);
     help_menu->addAction(about_qt);
+    help_menu->addAction(show_all_mines);
 }
 
 void MainWindow::create_actions()
@@ -343,6 +347,7 @@ void MainWindow::create_actions()
     connect(about_mine, SIGNAL(triggered()), this, SLOT(slot_about_mine()));
     about_qt = new QAction(QIcon(tr(":/images/qt.png")), tr("About qt"), this);
     connect(about_qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+    show_all_mines = new QAction(tr("Show all mines"), this);
 }
 
 void MainWindow::create_statusBar()

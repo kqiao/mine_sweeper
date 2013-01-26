@@ -17,6 +17,11 @@ void Block::set_number(int n)
     number = n;
 }
 
+void Block::set_tip()
+{
+    is_get_tip = true;
+}
+
 bool Block::is_mine()
 {
     return is_mine_flag;
@@ -25,6 +30,11 @@ bool Block::is_mine()
 bool Block::is_turn_over()
 {
     return turn_over_flag;
+}
+
+bool Block::is_marked()
+{
+    return mark_flag;
 }
 
 void Block::set_turn_over()
@@ -58,11 +68,17 @@ void Block::mousePressEvent(QMouseEvent *ev)
         if(!turn_over_flag){
             if(!mark_flag){     //normal下的变为插上旗
                 mark_flag = true;
-                setPixmap(QPixmap(tr(":/images/flag.png")));
+                if(is_get_tip)
+                    setPixmap(QPixmap(tr(":/images/flag_tip.png")));
+                else
+                    setPixmap(QPixmap(tr(":/images/flag.png")));
                 emit change_mines(1);
             }else{          //已经插过旗的，变为normal状态
                 mark_flag = false;
-                setPixmap(QPixmap(tr(":/images/normal.png")));
+                if(is_get_tip)
+                    setPixmap(QPixmap(tr(":/images/normal_tip.png")));
+                else
+                    setPixmap(QPixmap(tr(":/images/normal.png")));
                 emit change_mines(-1);
             }
             update();

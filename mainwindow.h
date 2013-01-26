@@ -49,6 +49,8 @@ private:
 
     QAction * about_mine;
     QAction * about_qt;
+    QAction * show_all_mines;
+
     QLabel * time_label;
     QLabel * left_mine_label;
 

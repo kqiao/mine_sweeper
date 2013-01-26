@@ -22,6 +22,8 @@ public slots:
     void slot_turn_over(bool);
     void slot_change_mines(int n);
 
+    void slot_show_all_mines();
+
 private:
     QGridLayout * grid_layout;
 
@@ -33,6 +35,7 @@ private:
     int turn_over_blocks;
 
     bool game_over_flag;
+    bool has_tipped_flag;
 
     int calc_number(int x, int y);
     void try_to_turn_more_blocks(int x, int y);

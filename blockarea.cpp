@@ -5,6 +5,7 @@
 #include <QEvent>
 #include <QQueue>
 #include <QPair>
+#include <QPixmap>
 
 BlockArea::BlockArea(int _r, int _c, int _m, QWidget *parent) :
     QWidget(parent)
@@ -28,6 +29,7 @@ void BlockArea::set_block_area(int _r, int _c, int _m, const bool is_init)
     total_blocks = row * column;
     turn_over_blocks = 0;
     game_over_flag = false;     //在每次新游戏中，game_over_flag都要重新设置为false。
+    has_tipped_flag = false;
 
     bool *mine_flag = new bool[total_blocks];   //变量做长度也能成功？？？
     for(int i = 0; i < total_blocks; i++)
@@ -137,4 +139,21 @@ void BlockArea::try_to_turn_more_blocks(int x, int y)
                 }
             }
     }
+}
+
+void BlockArea::slot_show_all_mines()
+{
+    if(has_tipped_flag)
+        return;
+    has_tipped_flag = true;
+    for(int i = 0; i < row; i++)
+        for(int j = 0; j < column; j++)
+        {
+            Block * current = static_cast<Block*>(grid_layout->itemAtPosition(i,j)->widget());
+            if(!current->is_turn_over() && !current->is_marked() && current->is_mine())  //如果没被打开，没被标记，并且还是地雷，就给出提示
+            {
+                current->set_tip();
+                current->setPixmap(QPixmap(tr(":/images/normal_tip.png")));
+            }
+        }
 }

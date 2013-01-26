@@ -22,5 +22,7 @@
         <file>images/qt.png</file>
         <file>images/rank.png</file>
         <file>images/clock.jpg</file>
+        <file>images/normal_tip.png</file>
+        <file>images/flag_tip.png</file>
     </qresource>
 </RCC>
