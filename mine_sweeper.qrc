@@ -1,0 +1,26 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/game.png</file>
+        <file>images/custom_standard.png</file>
+        <file>images/easy_standard.png</file>
+        <file>images/exit.png</file>
+        <file>images/flag.png</file>
+        <file>images/hard_standard.png</file>
+        <file>images/middle_standard.png</file>
+        <file>images/mine.png</file>
+        <file>images/mine_0.png</file>
+        <file>images/mine_1.png</file>
+        <file>images/mine_2.png</file>
+        <file>images/mine_3.png</file>
+        <file>images/mine_4.png</file>
+        <file>images/mine_5.png</file>
+        <file>images/mine_6.png</file>
+        <file>images/mine_7.png</file>
+        <file>images/mine_8.png</file>
+        <file>images/new_game.png</file>
+        <file>images/normal.png</file>
+        <file>images/qt.png</file>
+        <file>images/rank.png</file>
+        <file>images/clock.jpg</file>
+    </qresource>
+</RCC>
